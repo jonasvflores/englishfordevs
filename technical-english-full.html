@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical English Documentation - My First Web Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            overflow-y: auto;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .sidebar a:hover {
+            background: #3498db;
+            padding-left: 20px;
+        }
+
+        .sidebar a.active {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sidebar .section-group {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #34495e;
+        }
+
+        .sidebar .section-group h3 {
+            font-size: 0.9em;
+            color: #95a5a6;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        main {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1000px;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-banner p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .professor-credit {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .content-section {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content-section h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section h4 {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: #f4f4f4;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            border-radius: 5px;
+            line-height: 1.4;
+        }
+
+        .code-block code {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        table tr:hover {
+            background: #f0f4ff;
+        }
+
+        .activity-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .activity-box h4 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .mission-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .mission-box strong {
+            color: #856404;
+        }
+
+        .important-note {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .important-note strong {
+            color: #721c24;
+        }
+
+        .highlight {
+            background: #fffacd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vocab-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .vocab-card strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .vocab-card em {
+            color: #666;
+        }
+
+        .question-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .answer-space {
+            background: white;
+            border: 1px dashed #999;
+            padding: 15px;
+            margin: 10px 0;
+            min-height: 80px;
+            border-radius: 5px;
+            font-style: italic;
+            color: #999;
+        }
+
+        .instruction-box {
+            background: #e7f5e7;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .nav-group {
+            margin-bottom: 30px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            font-size: 0.95em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .quick-ref {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .quick-ref h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .quick-ref ul {
+            columns: 2;
+            gap: 20px;
+        }
+
+        .tech-doc {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0e8f8 100%);
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .tech-doc h3 {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                max-height: 400px;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .header-banner h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .section-number {
+            color: #999;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <h2>📚 Documentation</h2>
+        
+        <div class="nav-group">
+            <h3>Getting Started</h3>
+            <ul>
+                <li><a href="#section-tech-intro" class="nav-link active" data-section="section-tech-intro">What is HTML & CSS?</a></li>
+                <li><a href="#section-1" class="nav-link" data-section="section-1">Mission</a></li>
+                <li><a href="#section-2" class="nav-link" data-section="section-2">Before You Start</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Create Your Project</h3>
+            <ul>
+                <li><a href="#section-3" class="nav-link" data-section="section-3">Create Folder</a></li>
+                <li><a href="#section-4" class="nav-link" data-section="section-4">Create HTML File</a></li>
+                <li><a href="#section-5" class="nav-link" data-section="section-5">Add HTML Structure</a></li>
+                <li><a href="#section-6" class="nav-link" data-section="section-6">Open the Page</a></li>
+                <li><a href="#section-7" class="nav-link" data-section="section-7">Create CSS File</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Connect & Style</h3>
+            <ul>
+                <li><a href="#section-8" class="nav-link" data-section="section-8">Connect HTML & CSS</a></li>
+                <li><a href="#section-9" class="nav-link" data-section="section-9">Add Your First Style</a></li>
+                <li><a href="#section-10" class="nav-link" data-section="section-10">Refresh the Page</a></li>
+                <li><a href="#section-11" class="nav-link" data-section="section-11">Change the Page</a></li>
+                <li><a href="#section-12" class="nav-link" data-section="section-12">Add a Button</a></li>
+                <li><a href="#section-13" class="nav-link" data-section="section-13">Style the Button</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Reference</h3>
+            <ul>
+                <li><a href="#section-14" class="nav-link" data-section="section-14">Your Final Page</a></li>
+                <li><a href="#section-15" class="nav-link" data-section="section-15">If Something Goes Wrong</a></li>
+                <li><a href="#section-16" class="nav-link" data-section="section-16">Technical Vocabulary</a></li>
+                <li><a href="#section-17" class="nav-link" data-section="section-17">Files & Web Development</a></li>
+                <li><a href="#section-18" class="nav-link" data-section="section-18">CSS Vocabulary</a></li>
+                <li><a href="#section-19" class="nav-link" data-section="section-19">Expressions You'll See</a></li>
+                <li><a href="#section-20" class="nav-link" data-section="section-20">Translation Traps</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Activities</h3>
+            <ul>
+                <li><a href="#section-21" class="nav-link" data-section="section-21">Activity 1: Find the Action</a></li>
+                <li><a href="#section-22" class="nav-link" data-section="section-22">Activity 2: Don't Translate</a></li>
+                <li><a href="#section-23" class="nav-link" data-section="section-23">Activity 3: Translation Trap</a></li>
+                <li><a href="#section-24" class="nav-link" data-section="section-24">Activity 4: Word Meaning</a></li>
+                <li><a href="#section-25" class="nav-link" data-section="section-25">Activity 5: Find Important Info</a></li>
+                <li><a href="#section-26" class="nav-link" data-section="section-26">Activity 6: Documentation + Code</a></li>
+                <li><a href="#section-27" class="nav-link" data-section="section-27">Activity 7: Documentation + Screen</a></li>
+                <li><a href="#section-28" class="nav-link" data-section="section-28">Activity 8: Find the Error</a></li>
+                <li><a href="#section-29" class="nav-link" data-section="section-29">Activity 9: Follow Documentation</a></li>
+                <li><a href="#section-30" class="nav-link" data-section="section-30">Activity 10: Create Your Instruction</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Challenges</h3>
+            <ul>
+                <li><a href="#section-31" class="nav-link" data-section="section-31">Final Challenge: You Are the Technician</a></li>
+                <li><a href="#section-32" class="nav-link" data-section="section-32">Final Mission</a></li>
+                <li><a href="#section-33" class="nav-link" data-section="section-33">Final Reflection</a></li>
+                <li><a href="#section-34" class="nav-link" data-section="section-34">The Main Lesson</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <h3>Quick Reference</h3>
+            <ul>
+                <li><a href="#section-quickref" class="nav-link" data-section="section-quickref">Quick Reference Guide</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <!-- HEADER BANNER -->
+        <div class="header-banner">
+            <h1>🌐 TECHNICAL ENGLISH</h1>
+            <p>Using Documentation to Create Your First Web Page</p>
+            <p class="professor-credit">Instructor: Prof. Jonas Flores</p>
+        </div>
+
+        <!-- INTRO: WHAT IS HTML & CSS -->
+        <section class="content-section active" id="section-tech-intro" data-section="section-tech-intro">
+            <h2>📖 What is HTML & CSS?</h2>
+
+            <div class="tech-doc">
+                <h3>Introduction to Web Development</h3>
+                <p>Before you start this course, you need to understand what HTML and CSS are. These are the fundamental technologies for creating web pages.</p>
+            </div>
+
+            <h3>What is HTML?</h3>
+            <p><strong>HTML</strong> stands for "HyperText Markup Language". It is the code used to create the <strong>structure</strong> and <strong>content</strong> of web pages.</p>
+            
+            <p>Think of HTML like the skeleton of a body:</p>
+            <div class="code-block">
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+&lt;button&gt;This is a button&lt;/button&gt;
+            </div>
+
+            <p>HTML tells the browser: "This is a heading. This is a paragraph. This is a button."</p>
+
+            <h3>What is CSS?</h3>
+            <p><strong>CSS</strong> stands for "Cascading Style Sheets". It is the code used to style and design web pages. CSS controls colors, fonts, spacing, and how elements look.</p>
+
+            <p>Think of CSS like the clothes and makeup on a body:</p>
+            <div class="code-block">
+h1 {
+    color: blue;
+    font-size: 24px;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+}
+            </div>
+
+            <p>CSS tells the browser: "Make this heading blue. Make this button have a dark blue background and white text."</p>
+
+            <h3>HTML + CSS Together</h3>
+            <table>
+                <tr>
+                    <th>HTML</th>
+                    <th>CSS</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td>Creates the structure</td>
+                    <td>Styles the appearance</td>
+                    <td>A beautiful, organized web page</td>
+                </tr>
+                <tr>
+                    <td>Defines elements (heading, paragraph, button)</td>
+                    <td>Defines colors, fonts, spacing</td>
+                    <td>A complete web page</td>
+                </tr>
+                <tr>
+                    <td>Like building a house structure</td>
+                    <td>Like painting and decorating the house</td>
+                    <td>A finished, decorated house</td>
+                </tr>
+            </table>
+
+            <h3>Basic HTML Tags</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <strong>&lt;h1&gt; to &lt;h6&gt;</strong><br>
+                    <em>Headings (titles)</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>&lt;p&gt;</strong><br>
+                    <em>Paragraph (text)</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>&lt;button&gt;</strong><br>
+                    <em>Clickable button</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>&lt;a&gt;</strong><br>
+                    <em>Link to another page</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>&lt;img&gt;</strong><br>
+                    <em>Image</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>&lt;div&gt;</strong><br>
+                    <em>Container/Box</em>
+                </div>
+            </div>
+
+            <h3>Basic CSS Properties</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <strong>color</strong><br>
+                    <em>Text color</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>background-color</strong><br>
+                    <em>Background color</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>font-family</strong><br>
+                    <em>Type of font</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>font-size</strong><br>
+                    <em>Size of text</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>padding</strong><br>
+                    <em>Space inside</em>
+                </div>
+                <div class="vocab-card">
+                    <strong>margin</strong><br>
+                    <em>Space outside</em>
+                </div>
+            </div>
+
+            <div class="mission-box">
+                <p><strong>Ready to create your first web page?</strong> Continue to the next section to start your mission!</p>
+            </div>
+        </section>
+
+        <!-- SECTION 1: YOUR MISSION -->
+        <section class="content-section" id="section-1" data-section="section-1">
+            <h2>1. YOUR MISSION</h2>
+
+            <p>You are going to create your first web page.</p>
+
+            <p><strong>You don't need previous experience with HTML or CSS.</strong></p>
+
+            <h3>You will use this documentation to:</h3>
+            <ol>
+                <li>Create a project folder</li>
+                <li>Create an HTML file</li>
+                <li>Add HTML content</li>
+                <li>Create a CSS file</li>
+                <li>Connect the CSS file to the HTML page</li>
+                <li>Save your files</li>
+                <li>Open the page in a browser</li>
+                <li>Change the visual appearance of the page</li>
+            </ol>
+
+            <div class="mission-box">
+                <strong>Important:</strong> You do not need to translate the entire document. Your first objective is to understand:
+                <p style="margin-top: 10px; font-size: 1.1em; color: #856404;">
+                    <strong>"What do I need to do?"</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: BEFORE YOU START -->
+        <section class="content-section" id="section-2" data-section="section-2">
+            <h2>2. BEFORE YOU START</h2>
+
+            <p>Make sure that you have:</p>
+
+            <ul>
+                <li><strong>A text editor</strong> - Visual Studio Code, Notepad, or another text editor</li>
+                <li><strong>A web browser</strong> - Chrome, Firefox, Safari, or Edge</li>
+            </ul>
+
+            <div class="instruction-box">
+                <strong>✓ No internet connection is required for this activity.</strong>
+            </div>
+
+            <h3>Optional: Download a Text Editor</h3>
+            <p>If you don't have Visual Studio Code, you can download it for free:</p>
+            <div class="code-block">https://code.visualstudio.com/</div>
+
+            <p>Or you can use the default text editor on your computer:</p>
+            <ul>
+                <li><strong>Windows:</strong> Notepad</li>
+                <li><strong>Mac:</strong> TextEdit</li>
+                <li><strong>Linux:</strong> gedit or nano</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 3: CREATE PROJECT FOLDER -->
+        <section class="content-section" id="section-3" data-section="section-3">
+            <h2>3. CREATE THE PROJECT FOLDER</h2>
+
+            <p>Create a new folder on your computer.</p>
+
+            <p><strong>Name the folder:</strong></p>
+            <div class="code-block">my-first-web-page</div>
+
+            <p>Open the folder. You will use this folder to store the files for your website.</p>
+
+            <h3>Steps:</h3>
+            <ol>
+                <li>Right-click on your desktop or in File Explorer</li>
+                <li>Select "New Folder" (or "New" → "Folder")</li>
+                <li>Name it: <span class="highlight">my-first-web-page</span></li>
+                <li>Double-click to open it</li>
+            </ol>
+        </section>
+
+        <!-- SECTION 4: CREATE HTML FILE -->
+        <section class="content-section" id="section-4" data-section="section-4">
+            <h2>4. CREATE THE HTML FILE</h2>
+
+            <p>Create a new file inside the project folder.</p>
+
+            <p><strong>Name the file:</strong></p>
+            <div class="code-block">index.html</div>
+
+            <p><strong>Make sure that the file extension is:</strong></p>
+            <div class="code-block">.html</div>
+
+            <div class="important-note">
+                <strong>⚠️ Do not save the file as:</strong>
+                <div class="code-block">index.html.txt</div>
+            </div>
+
+            <h3>How to Create the File:</h3>
+            <ol>
+                <li>Open your text editor (Notepad, Visual Studio Code, etc.)</li>
+                <li>Go to File → New File</li>
+                <li>Go to File → Save As</li>
+                <li>Name it: <span class="highlight">index.html</span></li>
+                <li>Make sure the folder is: <span class="highlight">my-first-web-page</span></li>
+                <li>Click Save</li>
+            </ol>
+        </section>
+
+        <!-- SECTION 5: ADD HTML STRUCTURE -->
+        <section class="content-section" id="section-5" data-section="section-5">
+            <h2>5. ADD THE HTML STRUCTURE</h2>
+
+            <p>Open <span class="highlight">index.html</span> in your text editor.</p>
+
+            <p><strong>Enter the following code:</strong></p>
+            <div class="code-block"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+    &lt;p&gt;This is my first web page.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+
+            <p><strong>Save the file.</strong></p>
+
+            <h3>Understanding the Code:</h3>
+            <table>
+                <tr>
+                    <th>Code</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>&lt;!DOCTYPE html&gt;</td>
+                    <td>Tells the browser this is an HTML5 document</td>
+                </tr>
+                <tr>
+                    <td>&lt;html&gt;&lt;/html&gt;</td>
+                    <td>Container for the entire HTML document</td>
+                </tr>
+                <tr>
+                    <td>&lt;head&gt;&lt;/head&gt;</td>
+                    <td>Contains information about the page (not visible to users)</td>
+                </tr>
+                <tr>
+                    <td>&lt;title&gt;&lt;/title&gt;</td>
+                    <td>Title shown in the browser tab</td>
+                </tr>
+                <tr>
+                    <td>&lt;body&gt;&lt;/body&gt;</td>
+                    <td>Contains the visible content of the page</td>
+                </tr>
+                <tr>
+                    <td>&lt;h1&gt;&lt;/h1&gt;</td>
+                    <td>Heading (large title)</td>
+                </tr>
+                <tr>
+                    <td>&lt;p&gt;&lt;/p&gt;</td>
+                    <td>Paragraph (text)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 6: OPEN THE PAGE -->
+        <section class="content-section" id="section-6" data-section="section-6">
+            <h2>6. OPEN THE PAGE</h2>
+
+            <p>Open the <span class="highlight">index.html</span> file in your web browser.</p>
+
+            <h3>How to Open:</h3>
+            <ol>
+                <li>Find your <span class="highlight">index.html</span> file in File Explorer</li>
+                <li>Right-click on the file</li>
+                <li>Select "Open with" → Choose your web browser (Chrome, Firefox, etc.)</li>
+                <li>Wait for the browser to open</li>
+            </ol>
+
+            <h3>What You Should See:</h3>
+            <p>You should see:</p>
+            <ul>
+                <li><strong>Hello, World!</strong> (heading)</li>
+                <li><strong>This is my first web page.</strong> (paragraph below)</li>
+            </ul>
+
+            <div class="instruction-box">
+                <strong>✓ If you can see the text, your HTML page is working!</strong>
+            </div>
+        </section>
+
+        <!-- SECTION 7: CREATE CSS FILE -->
+        <section class="content-section" id="section-7" data-section="section-7">
+            <h2>7. CREATE THE CSS FILE</h2>
+
+            <p>Return to your project folder.</p>
+
+            <p>Create another file and name it:</p>
+            <div class="code-block">style.css</div>
+
+            <p><strong>Make sure that the file extension is:</strong></p>
+            <div class="code-block">.css</div>
+
+            <p><strong>Your project should now contain:</strong></p>
+            <div class="code-block">
+my-first-web-page
+│
+├── index.html
+└── style.css
+            </div>
+
+            <h3>How to Create the CSS File:</h3>
+            <ol>
+                <li>Open your text editor again</li>
+                <li>Go to File → New File</li>
+                <li>Go to File → Save As</li>
+                <li>Name it: <span class="highlight">style.css</span></li>
+                <li>Make sure the folder is: <span class="highlight">my-first-web-page</span></li>
+                <li>Click Save</li>
+            </ol>
+        </section>
+
+        <!-- SECTION 8: CONNECT HTML AND CSS -->
+        <section class="content-section" id="section-8" data-section="section-8">
+            <h2>8. CONNECT HTML AND CSS</h2>
+
+            <p>Return to <span class="highlight">index.html</span>.</p>
+
+            <p>Inside the <span class="highlight">&lt;head&gt;</span> section, add:</p>
+            <div class="code-block">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+
+            <p><strong>Your &lt;head&gt; section should now look like this:</strong></p>
+            <div class="code-block"><pre>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</pre></div>
+
+            <p><strong>Save the file.</strong></p>
+
+            <h3>What This Means:</h3>
+            <p>The line <span class="highlight">&lt;link rel="stylesheet" href="style.css"&gt;</span> tells the browser:</p>
+            <p><em>"Use the file called style.css to style this HTML page."</em></p>
+
+            <p>Without this line, the browser won't apply any CSS styling.</p>
+        </section>
+
+        <!-- SECTION 9: ADD FIRST STYLE -->
+        <section class="content-section" id="section-9" data-section="section-9">
+            <h2>9. ADD YOUR FIRST STYLE</h2>
+
+            <p>Open <span class="highlight">style.css</span>.</p>
+
+            <p><strong>Enter:</strong></p>
+            <div class="code-block"><pre>body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: darkblue;
+}</pre></div>
+
+            <p><strong>Save the file.</strong></p>
+
+            <h3>What This Code Means:</h3>
+            <table>
+                <tr>
+                    <th>Code</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>body { }</td>
+                    <td>Styling for the entire page body</td>
+                </tr>
+                <tr>
+                    <td>background-color: lightblue;</td>
+                    <td>Make the background light blue</td>
+                </tr>
+                <tr>
+                    <td>font-family: Arial, sans-serif;</td>
+                    <td>Use Arial font (or similar)</td>
+                </tr>
+                <tr>
+                    <td>h1 { }</td>
+                    <td>Styling specifically for h1 headings</td>
+                </tr>
+                <tr>
+                    <td>color: darkblue;</td>
+                    <td>Make the heading text dark blue</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 10: REFRESH PAGE -->
+        <section class="content-section" id="section-10" data-section="section-10">
+            <h2>10. REFRESH THE PAGE</h2>
+
+            <p>Return to your browser.</p>
+
+            <p><strong>Refresh the page:</strong></p>
+            <ul>
+                <li>Press <span class="highlight">F5</span> on your keyboard, OR</li>
+                <li>Press <span class="highlight">Ctrl + R</span> (Windows) or <span class="highlight">Cmd + R</span> (Mac), OR</li>
+                <li>Click the refresh button in the browser</li>
+            </ul>
+
+            <p><strong>You should now see a page with:</strong></p>
+            <ul>
+                <li>A light blue background</li>
+                <li>A dark blue heading</li>
+                <li>The text from your HTML file</li>
+            </ul>
+
+            <h3>If Something Went Wrong:</h3>
+            <p>Check that:</p>
+            <ul>
+                <li>1. <span class="highlight">style.css</span> is in the same folder as <span class="highlight">index.html</span></li>
+                <li>2. The file name is exactly <span class="highlight">style.css</span></li>
+                <li>3. The <span class="highlight">&lt;link&gt;</span> element was added correctly in the &lt;head&gt;</li>
+                <li>4. Both files were saved</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 11: CHANGE THE PAGE -->
+        <section class="content-section" id="section-11" data-section="section-11">
+            <h2>11. CHANGE THE PAGE</h2>
+
+            <p>Now customize your page. Open <span class="highlight">style.css</span> and make changes:</p>
+
+            <h3>Change the background color:</h3>
+            <div class="code-block">background-color: lightgreen;</div>
+
+            <h3>Change the heading color:</h3>
+            <div class="code-block">color: purple;</div>
+
+            <h3>Change the font:</h3>
+            <div class="code-block">font-family: Georgia, serif;</div>
+
+            <p><strong>Save the CSS file.</strong></p>
+
+            <p><strong>Refresh the browser.</strong></p>
+
+            <p>Observe what happens.</p>
+
+            <h3>Color Options:</h3>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <strong>lightblue</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>lightgreen</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>purple</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>darkblue</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>red</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>orange</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>yellow</strong>
+                </div>
+                <div class="vocab-card">
+                    <strong>pink</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 12: ADD A BUTTON -->
+        <section class="content-section" id="section-12" data-section="section-12">
+            <h2>12. ADD A BUTTON</h2>
+
+            <p>Return to <span class="highlight">index.html</span>.</p>
+
+            <p>Below the paragraph, add:</p>
+            <div class="code-block">&lt;button&gt;Click Me&lt;/button&gt;</div>
+
+            <p><strong>Your &lt;body&gt; should now look like:</strong></p>
+            <div class="code-block"><pre>&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first web page.&lt;/p&gt;
+    &lt;button&gt;Click Me&lt;/button&gt;
+&lt;/body&gt;</pre></div>
+
+            <p><strong>Save the file.</strong></p>
+
+            <p><strong>Refresh the browser.</strong></p>
+
+            <p>You should now see a button on the page.</p>
+        </section>
+
+        <!-- SECTION 13: STYLE THE BUTTON -->
+        <section class="content-section" id="section-13" data-section="section-13">
+            <h2>13. STYLE THE BUTTON</h2>
+
+            <p>Open <span class="highlight">style.css</span>.</p>
+
+            <p>Add:</p>
+            <div class="code-block"><pre>button {
+    background-color: darkblue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+}</pre></div>
+
+            <p><strong>Save the file.</strong></p>
+
+            <p><strong>Refresh the browser.</strong></p>
+
+            <p>The button should now have a different appearance.</p>
+
+            <h3>What the Code Means:</h3>
+            <table>
+                <tr>
+                    <th>CSS Property</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>background-color: darkblue;</td>
+                    <td>Background color of the button</td>
+                </tr>
+                <tr>
+                    <td>color: white;</td>
+                    <td>Text color on the button</td>
+                </tr>
+                <tr>
+                    <td>padding: 10px 20px;</td>
+                    <td>Space inside the button (top/bottom and left/right)</td>
+                </tr>
+                <tr>
+                    <td>border: none;</td>
+                    <td>Remove the button border</td>
+                </tr>
+                <tr>
+                    <td>border-radius: 6px;</td>
+                    <td>Round the corners of the button</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 14: YOUR FINAL PAGE -->
+        <section class="content-section" id="section-14" data-section="section-14">
+            <h2>14. YOUR FINAL PAGE</h2>
+
+            <p><strong>Your final project should contain:</strong></p>
+            <div class="code-block">
+my-first-web-page
+│
+├── index.html
+└── style.css
+            </div>
+
+            <p><strong>Your page should contain:</strong></p>
+            <ul>
+                <li>✓ A heading</li>
+                <li>✓ A paragraph</li>
+                <li>✓ A button</li>
+                <li>✓ A colored background</li>
+                <li>✓ Customized text</li>
+                <li>✓ A styled button</li>
+            </ul>
+
+            <div class="instruction-box">
+                <strong>Congratulations! You have created your first web page!</strong>
+            </div>
+        </section>
+
+        <!-- SECTION 15: IF SOMETHING GOES WRONG -->
+        <section class="content-section" id="section-15" data-section="section-15">
+            <h2>15. IF SOMETHING GOES WRONG</h2>
+
+            <h3>The page is blank</h3>
+            <p>Check your HTML code. Make sure the file was saved as:</p>
+            <div class="code-block">index.html</div>
+
+            <h3>The CSS doesn't work</h3>
+            <p>Make sure that the following line exists inside <span class="highlight">&lt;head&gt;</span>:</p>
+            <div class="code-block">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+
+            <h3>The background doesn't change</h3>
+            <p>Make sure that <span class="highlight">style.css</span> is in the same folder as <span class="highlight">index.html</span>.</p>
+
+            <h3>The button doesn't appear</h3>
+            <p>Make sure you added:</p>
+            <div class="code-block">&lt;button&gt;Click Me&lt;/button&gt;</div>
+            <p>inside the <span class="highlight">&lt;body&gt;</span>.</p>
+
+            <h3>The browser shows the code instead of the page</h3>
+            <p>Check the file extension. The file must be:</p>
+            <div class="code-block">index.html</div>
+            <p>not:</p>
+            <div class="code-block">index.html.txt</div>
+        </section>
+
+        <!-- SECTION 16: TECHNICAL VOCABULARY - ACTIONS -->
+        <section class="content-section" id="section-16" data-section="section-16">
+            <h2>16. TECHNICAL VOCABULARY</h2>
+
+            <h3>ACTIONS</h3>
+            <table class="vocab-table">
+                <tr>
+                    <th>English</th>
+                    <th>Meaning in this context</th>
+                    <th>Portuguese</th>
+                </tr>
+                <tr>
+                    <td><strong>create</strong></td>
+                    <td>Make something new</td>
+                    <td>criar</td>
+                </tr>
+                <tr>
+                    <td><strong>open</strong></td>
+                    <td>Launch a file or application</td>
+                    <td>abrir</td>
+                </tr>
+                <tr>
+                    <td><strong>add</strong></td>
+                    <td>Put something in</td>
+                    <td>adicionar</td>
+                </tr>
+                <tr>
+                    <td><strong>enter</strong></td>
+                    <td>Type into a file</td>
+                    <td>inserir/digitar</td>
+                </tr>
+                <tr>
+                    <td><strong>type</strong></td>
+                    <td>Write using keyboard</td>
+                    <td>digitar</td>
+                </tr>
+                <tr>
+                    <td><strong>write</strong></td>
+                    <td>Create text</td>
+                    <td>escrever</td>
+                </tr>
+                <tr>
+                    <td><strong>save</strong></td>
+                    <td>Store a file</td>
+                    <td>salvar</td>
+                </tr>
+                <tr>
+                    <td><strong>change</strong></td>
+                    <td>Alter or modify</td>
+                    <td>alterar</td>
+                </tr>
+                <tr>
+                    <td><strong>edit</strong></td>
+                    <td>Modify existing content</td>
+                    <td>editar</td>
+                </tr>
+                <tr>
+                    <td><strong>remove</strong></td>
+                    <td>Take away</td>
+                    <td>remover</td>
+                </tr>
+                <tr>
+                    <td><strong>delete</strong></td>
+                    <td>Erase permanently</td>
+                    <td>excluir</td>
+                </tr>
+                <tr>
+                    <td><strong>connect</strong></td>
+                    <td>Link together</td>
+                    <td>conectar</td>
+                </tr>
+                <tr>
+                    <td><strong>refresh</strong></td>
+                    <td>Reload in browser</td>
+                    <td>atualizar/recarregar</td>
+                </tr>
+                <tr>
+                    <td><strong>check</strong></td>
+                    <td>Verify or examine</td>
+                    <td>verificar</td>
+                </tr>
+                <tr>
+                    <td><strong>make sure</strong></td>
+                    <td>Ensure or confirm</td>
+                    <td>certificar-se de que</td>
+                </tr>
+                <tr>
+                    <td><strong>customize</strong></td>
+                    <td>Make it your own</td>
+                    <td>personalizar</td>
+                </tr>
+                <tr>
+                    <td><strong>style</strong></td>
+                    <td>Apply design/appearance</td>
+                    <td>estilizar</td>
+                </tr>
+                <tr>
+                    <td><strong>display</strong></td>
+                    <td>Show on screen</td>
+                    <td>exibir/mostrar</td>
+                </tr>
+                <tr>
+                    <td><strong>load</strong></td>
+                    <td>Bring into memory/browser</td>
+                    <td>carregar</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 17: FILES & WEB DEVELOPMENT -->
+        <section class="content-section" id="section-17" data-section="section-17">
+            <h2>17. FILES AND WEB DEVELOPMENT</h2>
+
+            <table class="vocab-table">
+                <tr>
+                    <th>English</th>
+                    <th>Portuguese</th>
+                </tr>
+                <tr>
+                    <td><strong>file</strong></td>
+                    <td>arquivo</td>
+                </tr>
+                <tr>
+                    <td><strong>folder</strong></td>
+                    <td>pasta</td>
+                </tr>
+                <tr>
+                    <td><strong>page</strong></td>
+                    <td>página</td>
+                </tr>
+                <tr>
+                    <td><strong>website</strong></td>
+                    <td>site</td>
+                </tr>
+                <tr>
+                    <td><strong>browser</strong></td>
+                    <td>navegador</td>
+                </tr>
+                <tr>
+                    <td><strong>code</strong></td>
+                    <td>código</td>
+                </tr>
+                <tr>
+                    <td><strong>text editor</strong></td>
+                    <td>editor de texto</td>
+                </tr>
+                <tr>
+                    <td><strong>heading</strong></td>
+                    <td>título/cabeçalho</td>
+                </tr>
+                <tr>
+                    <td><strong>paragraph</strong></td>
+                    <td>parágrafo</td>
+                </tr>
+                <tr>
+                    <td><strong>button</strong></td>
+                    <td>botão</td>
+                </tr>
+                <tr>
+                    <td><strong>background</strong></td>
+                    <td>plano de fundo</td>
+                </tr>
+                <tr>
+                    <td><strong>color</strong></td>
+                    <td>cor</td>
+                </tr>
+                <tr>
+                    <td><strong>font</strong></td>
+                    <td>fonte</td>
+                </tr>
+                <tr>
+                    <td><strong>style</strong></td>
+                    <td>estilo</td>
+                </tr>
+                <tr>
+                    <td><strong>element</strong></td>
+                    <td>elemento</td>
+                </tr>
+                <tr>
+                    <td><strong>attribute</strong></td>
+                    <td>atributo</td>
+                </tr>
+                <tr>
+                    <td><strong>tag</strong></td>
+                    <td>tag</td>
+                </tr>
+                <tr>
+                    <td><strong>link</strong></td>
+                    <td>link</td>
+                </tr>
+                <tr>
+                    <td><strong>project</strong></td>
+                    <td>projeto</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 18: CSS VOCABULARY -->
+        <section class="content-section" id="section-18" data-section="section-18">
+            <h2>18. CSS VOCABULARY</h2>
+
+            <table class="vocab-table">
+                <tr>
+                    <th>English</th>
+                    <th>Meaning</th>
+                    <th>Portuguese</th>
+                </tr>
+                <tr>
+                    <td><strong>background-color</strong></td>
+                    <td>Color of the background</td>
+                    <td>cor de fundo</td>
+                </tr>
+                <tr>
+                    <td><strong>font-family</strong></td>
+                    <td>Type of font used</td>
+                    <td>família da fonte</td>
+                </tr>
+                <tr>
+                    <td><strong>color</strong></td>
+                    <td>Color of text</td>
+                    <td>cor</td>
+                </tr>
+                <tr>
+                    <td><strong>width</strong></td>
+                    <td>How wide something is</td>
+                    <td>largura</td>
+                </tr>
+                <tr>
+                    <td><strong>height</strong></td>
+                    <td>How tall something is</td>
+                    <td>altura</td>
+                </tr>
+                <tr>
+                    <td><strong>margin</strong></td>
+                    <td>Space on the outside</td>
+                    <td>margem</td>
+                </tr>
+                <tr>
+                    <td><strong>padding</strong></td>
+                    <td>Space on the inside</td>
+                    <td>espaçamento interno</td>
+                </tr>
+                <tr>
+                    <td><strong>border</strong></td>
+                    <td>Line around an element</td>
+                    <td>borda</td>
+                </tr>
+                <tr>
+                    <td><strong>border-radius</strong></td>
+                    <td>Rounding of border corners</td>
+                    <td>arredondamento da borda</td>
+                </tr>
+                <tr>
+                    <td><strong>display</strong></td>
+                    <td>How an element is shown</td>
+                    <td>exibição</td>
+                </tr>
+                <tr>
+                    <td><strong>position</strong></td>
+                    <td>Where an element is placed</td>
+                    <td>posição</td>
+                </tr>
+                <tr>
+                    <td><strong>size</strong></td>
+                    <td>How big something is</td>
+                    <td>tamanho</td>
+                </tr>
+                <tr>
+                    <td><strong>font-size</strong></td>
+                    <td>Size of text</td>
+                    <td>tamanho da fonte</td>
+                </tr>
+                <tr>
+                    <td><strong>text-align</strong></td>
+                    <td>Alignment of text</td>
+                    <td>alinhamento do texto</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 19: EXPRESSIONS -->
+        <section class="content-section" id="section-19" data-section="section-19">
+            <h2>19. EXPRESSIONS YOU WILL SEE OFTEN</h2>
+
+            <h3>Create a new file</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Create a new file</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Crie um novo arquivo</em>
+                </div>
+            </div>
+
+            <h3>Open the file</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Open the file</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Abra o arquivo</em>
+                </div>
+            </div>
+
+            <h3>Save the file</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Save the file</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Salve o arquivo</em>
+                </div>
+            </div>
+
+            <h3>Add the following code</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Add the following code</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Adicione o código a seguir</em>
+                </div>
+            </div>
+
+            <h3>Enter the following code</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Enter the following code</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Digite o código a seguir</em>
+                </div>
+            </div>
+
+            <h3>Make sure that...</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Make sure that...</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Certifique-se de que...</em>
+                </div>
+            </div>
+
+            <h3>Inside the &lt;head&gt; section</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Inside the &lt;head&gt; section</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Dentro da seção &lt;head&gt;</em>
+                </div>
+            </div>
+
+            <h3>Below the paragraph</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Below the paragraph</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Abaixo do parágrafo</em>
+                </div>
+            </div>
+
+            <h3>Change the background color</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Change the background color</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Altere a cor de fundo</em>
+                </div>
+            </div>
+
+            <h3>Refresh the page</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Refresh the page</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Atualize/recarregue a página</em>
+                </div>
+            </div>
+
+            <h3>Check the result</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Check the result</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Verifique o resultado</em>
+                </div>
+            </div>
+
+            <h3>If the page does not...</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>If the page does not...</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Se a página não...</em>
+                </div>
+            </div>
+
+            <h3>Your page should...</h3>
+            <div class="two-column">
+                <div>
+                    <strong>English:</strong><br>
+                    <em>Your page should...</em>
+                </div>
+                <div>
+                    <strong>Portuguese:</strong><br>
+                    <em>Sua página deve...</em>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 20: TRANSLATION TRAPS -->
+        <section class="content-section" id="section-20" data-section="section-20">
+            <h2>20. TRANSLATION TRAPS</h2>
+
+            <p>Some expressions may look strange if translated word by word.</p>
+
+            <h3>REFRESH</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">refresh = refrescar (drink something cold)</div>
+            <p><strong>In a browser:</strong></p>
+            <div class="code-block">refresh = atualizar/recarregar a página</div>
+
+            <h3>LOAD</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">load = carga/carregar peso (carry a heavy weight)</div>
+            <p><strong>In technology:</strong></p>
+            <div class="code-block">load = carregar (bring into the browser)</div>
+            <p><strong>Example:</strong></p>
+            <div class="code-block">The page is loading. = A página está carregando.</div>
+
+            <h3>DISPLAY</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">display = exibição (a show or exhibition)</div>
+            <p><strong>In technology:</strong></p>
+            <div class="code-block">display = exibir/mostrar (show on screen)</div>
+            <p><strong>Example:</strong></p>
+            <div class="code-block">The browser displays the page. = O navegador exibe a página.</div>
+
+            <h3>STYLE</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">style = estilo (fashion or personal style)</div>
+            <p><strong>In web development:</strong></p>
+            <div class="code-block">style = estilizar (apply design/appearance)</div>
+            <p><strong>Example:</strong></p>
+            <div class="code-block">Style the button. = Estilize o botão.</div>
+
+            <h3>BODY</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">body = corpo (human body)</div>
+            <p><strong>In HTML:</strong></p>
+            <div class="code-block">body = corpo da página/seção principal do documento</div>
+            <p><strong>Example:</strong></p>
+            <div class="code-block">Add the button inside the body. = Adicione o botão dentro do body.</div>
+
+            <h3>HEAD</h3>
+            <p><strong>In everyday English:</strong></p>
+            <div class="code-block">head = cabeça (top of your body)</div>
+            <p><strong>In HTML:</strong></p>
+            <div class="code-block">head = seção de informações do documento (metadata section)</div>
+            <p><strong>Example:</strong></p>
+            <div class="code-block">Add the link inside the head. = Adicione o link dentro do head.</div>
+        </section>
+
+        <!-- SECTION 21: ACTIVITY 1 -->
+        <section class="content-section" id="section-21" data-section="section-21">
+            <h2>21. ACTIVITY 1 — FIND THE ACTION</h2>
+
+            <p>Read the instructions:</p>
+            <div class="code-block">
+Create a new file.
+Open the file in your text editor.
+Add the following code.
+Save the file.
+Open the page in your browser.
+            </div>
+
+            <p>Find the action in each sentence:</p>
+            <table>
+                <tr>
+                    <th>Sentence</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Create a new file.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>Open the file.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>Add the following code.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>Save the file.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>Open the page.</td>
+                    <td class="answer-space"></td>
+                </tr>
+            </table>
+
+            <div class="question-box">
+                <strong>Question:</strong> What do these words have in common?
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 22: ACTIVITY 2 -->
+        <section class="content-section" id="section-22" data-section="section-22">
+            <h2>22. ACTIVITY 2 — DON'T TRANSLATE EVERYTHING</h2>
+
+            <p>Read:</p>
+            <div class="code-block">
+Create a new file inside the project folder. Name the file index.html and save it. Open the file in your browser and refresh the page.
+            </div>
+
+            <p><strong>Do not translate the entire paragraph.</strong></p>
+
+            <p>Answer:</p>
+
+            <div class="question-box">
+                <strong>1. What should you create?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>2. Where should you create it?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>3. What should you name it?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>4. What should you do after saving it?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>5. What action may you need to repeat in the browser?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 23: ACTIVITY 3 -->
+        <section class="content-section" id="section-23" data-section="section-23">
+            <h2>23. ACTIVITY 3 — THE TRANSLATION TRAP</h2>
+
+            <p>Choose the best interpretation:</p>
+
+            <div class="activity-box">
+                <h4>1. Refresh the page.</h4>
+                <ul>
+                    <li>A) Refresque a página.</li>
+                    <li>B) Atualize/recarregue a página. ✓</li>
+                    <li>C) Limpe a página.</li>
+                    <li>D) Apague a página.</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h4>2. Add the following code.</h4>
+                <ul>
+                    <li>A) Some o código seguinte.</li>
+                    <li>B) Colete o código seguinte.</li>
+                    <li>C) Adicione o código a seguir. ✓</li>
+                    <li>D) Aumente o código.</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h4>3. Style the button.</h4>
+                <ul>
+                    <li>A) Estude o botão.</li>
+                    <li>B) Estilize o botão. ✓</li>
+                    <li>C) Escreva o botão.</li>
+                    <li>D) Organize o botão.</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h4>4. Make sure the file is saved.</h4>
+                <ul>
+                    <li>A) Faça o arquivo ficar certo.</li>
+                    <li>B) Certifique-se de que o arquivo está salvo. ✓</li>
+                    <li>C) Faça o arquivo salvar sozinho.</li>
+                    <li>D) Conserte o arquivo.</li>
+                </ul>
+            </div>
+
+            <div class="activity-box">
+                <h4>5. The browser displays the page.</h4>
+                <ul>
+                    <li>A) O navegador mostra/exibe a página. ✓</li>
+                    <li>B) O navegador desenha a página.</li>
+                    <li>C) O navegador imprime a página.</li>
+                    <li>D) O navegador apaga a página.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 24: ACTIVITY 4 -->
+        <section class="content-section" id="section-24" data-section="section-24">
+            <h2>24. ACTIVITY 4 — WHAT DOES THE WORD MEAN HERE?</h2>
+
+            <p>The word <strong>LOAD</strong> appears in this sentence:</p>
+            <div class="code-block">The page is loading.</div>
+
+            <p>What does it mean here?</p>
+            <ul>
+                <li>A) A página está carregando (carrying weight). ✓</li>
+                <li>B) A página está pesando.</li>
+                <li>C) A página está cheia.</li>
+                <li>D) A página está descarregando.</li>
+            </ul>
+
+            <p style="margin-top: 30px;"><strong>Now look at:</strong></p>
+            <div class="code-block">The browser loads the CSS file.</div>
+
+            <div class="question-box">
+                <strong>What does "loads" mean?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 25: ACTIVITY 5 -->
+        <section class="content-section" id="section-25" data-section="section-25">
+            <h2>25. ACTIVITY 5 — FIND THE IMPORTANT INFORMATION</h2>
+
+            <p>Read:</p>
+            <div class="code-block">
+Before refreshing the page, make sure that you saved both files. If the CSS changes are not visible, check that style.css is in the same folder as index.html.
+            </div>
+
+            <p><strong>Do not translate everything.</strong></p>
+
+            <p>Find:</p>
+
+            <div class="question-box">
+                <strong>Action 1</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Action 2</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Condition</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>What should be checked?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Which two file names appear?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 26: ACTIVITY 6 -->
+        <section class="content-section" id="section-26" data-section="section-26">
+            <h2>26. ACTIVITY 6 — DOCUMENTATION + CODE</h2>
+
+            <p>Read:</p>
+            <div class="code-block">
+Add the following element inside the &lt;body&gt; section:
+
+&lt;button&gt;Click Me&lt;/button&gt;
+
+Save the file and refresh the page.
+            </div>
+
+            <div class="question-box">
+                <strong>1. What should you add?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>2. Where should you add it?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>3. What should you do after saving?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>4. What should appear on the page?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 27: ACTIVITY 7 -->
+        <section class="content-section" id="section-27" data-section="section-27">
+            <h2>27. ACTIVITY 7 — DOCUMENTATION + SCREEN</h2>
+
+            <p>Imagine that the documentation says:</p>
+            <div class="code-block">
+Open the project folder and select index.html.
+            </div>
+
+            <p>Your file explorer shows:</p>
+            <div class="code-block">
+my-first-web-page
+
+    index.html
+    style.css
+    image.png
+    notes.txt
+            </div>
+
+            <div class="question-box">
+                <strong>1. Which file should you select?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>2. Why?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 28: ACTIVITY 8 -->
+        <section class="content-section" id="section-28" data-section="section-28">
+            <h2>28. ACTIVITY 8 — FIND THE ERROR</h2>
+
+            <p>A student created this project:</p>
+            <div class="code-block">
+my-first-web-page
+
+    index.html
+            </div>
+
+            <p>But the documentation says:</p>
+            <div class="code-block">
+Make sure that style.css is in the same folder as index.html.
+            </div>
+
+            <p>The student says:</p>
+            <div class="code-block">
+"My CSS doesn't work."
+            </div>
+
+            <div class="question-box">
+                <strong>1. What is probably missing?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>2. What should the student do?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 29: ACTIVITY 9 -->
+        <section class="content-section" id="section-29" data-section="section-29">
+            <h2>29. ACTIVITY 9 — FOLLOW THE DOCUMENTATION</h2>
+
+            <p>Read the instructions:</p>
+            <div class="code-block">
+Open style.css.
+Add the following code:
+
+body {
+    background-color: black;
+    color: white;
+}
+
+Save the file and refresh the page.
+            </div>
+
+            <p><strong>Without translating everything, what do you need to do?</strong></p>
+
+            <table>
+                <tr>
+                    <th>Step</th>
+                    <th>Your Answer</th>
+                </tr>
+                <tr>
+                    <td>1.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td class="answer-space"></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td class="answer-space"></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 30: ACTIVITY 10 -->
+        <section class="content-section" id="section-30" data-section="section-30">
+            <h2>30. ACTIVITY 10 — CREATE YOUR OWN INSTRUCTION</h2>
+
+            <p>You are now going to write a small piece of documentation.</p>
+
+            <p><strong>Your task:</strong> Tell another student how to change the background color of the page.</p>
+
+            <p><strong>Use at least three of these expressions:</strong></p>
+            <ul>
+                <li>Open...</li>
+                <li>Change...</li>
+                <li>Add...</li>
+                <li>Save...</li>
+                <li>Make sure...</li>
+                <li>Refresh...</li>
+                <li>Check...</li>
+            </ul>
+
+            <h3>Your documentation:</h3>
+            <div class="answer-space" style="min-height: 200px;"></div>
+        </section>
+
+        <!-- SECTION 31: FINAL CHALLENGE -->
+        <section class="content-section" id="section-31" data-section="section-31">
+            <h2>31. FINAL CHALLENGE — YOU ARE THE TECHNICIAN</h2>
+
+            <p>A classmate gives you the following problem:</p>
+            <div class="important-note">
+                <strong>⚠️ "I created my HTML page, but the CSS isn't working."</strong>
+            </div>
+
+            <p>You have access to the documentation. Your job is to investigate.</p>
+
+            <div class="question-box">
+                <strong>Step 1 — What should you check first?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Step 2 — Which files should exist?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Step 3 — What should connect the HTML and CSS?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Step 4 — Where should the CSS file be?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Step 5 — What should the user do after making the correction?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>Step 6 — Explain the solution in Portuguese.</strong>
+                <div class="answer-space" style="min-height: 150px;"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 32: FINAL MISSION -->
+        <section class="content-section" id="section-32" data-section="section-32">
+            <h2>32. FINAL MISSION</h2>
+
+            <p>Now create your own version of the page.</p>
+
+            <p><strong>Change at least:</strong></p>
+            <ul>
+                <li>✓ the heading</li>
+                <li>✓ the paragraph</li>
+                <li>✓ the background color</li>
+                <li>✓ the heading color</li>
+                <li>✓ the button text</li>
+                <li>✓ the button appearance</li>
+            </ul>
+
+            <div class="mission-box">
+                <p><strong>Remember:</strong></p>
+                <p>You may consult the documentation.<br>
+                You may use a translator.<br>
+                You may use an AI assistant.</p>
+                <p style="margin-top: 15px;">But first try to identify:</p>
+                <p style="font-size: 1.1em;"><strong>"What information do I actually need?"</strong></p>
+            </div>
+        </section>
+
+        <!-- SECTION 33: FINAL REFLECTION -->
+        <section class="content-section" id="section-33" data-section="section-33">
+            <h2>33. FINAL REFLECTION</h2>
+
+            <div class="question-box">
+                <strong>1. Did you translate the entire documentation?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>2. Which words did you understand without translating?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>3. Which words required context?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>4. Did the code help you understand the English?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>5. Did the English help you understand the code?</strong>
+                <div class="answer-space"></div>
+            </div>
+
+            <div class="question-box">
+                <strong>6. What would happen if you found the same type of documentation tomorrow?</strong>
+                <div class="answer-space"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 34: THE MAIN LESSON -->
+        <section class="content-section" id="section-34" data-section="section-34">
+            <h2>34. THE MAIN LESSON</h2>
+
+            <div class="mission-box">
+                <h3>Technical English is not about translating every word.</h3>
+
+                <p style="margin-top: 20px;">It is about being able to:</p>
+
+                <div style="margin: 25px 0; font-size: 1.1em;">
+                    <p><strong>FIND</strong> → the information you need</p>
+                    <p><strong>UNDERSTAND</strong> → what it means in context</p>
+                    <p><strong>ACT</strong> → follow the instructions</p>
+                    <p><strong>CHECK</strong> → if your result is correct</p>
+                </div>
+
+                <p style="margin-top: 25px;">You don't need to understand everything.</p>
+                <p><strong>You need to understand enough to do something.</strong></p>
+
+                <p style="margin-top: 20px;">And when you don't understand something:</p>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Use the context.</strong></li>
+                    <li><strong>Look for patterns.</strong></li>
+                    <li><strong>Use the tools available.</strong></li>
+                    <li><strong>Check the result.</strong></li>
+                </ul>
+
+                <p style="margin-top: 25px; font-style: italic;">The goal is not to work without translators or artificial intelligence.</p>
+                <p style="font-style: italic;"><strong>The goal is to become capable of using these tools intelligently.</strong></p>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="content-section" id="section-quickref" data-section="section-quickref">
+            <h2>📋 QUICK REFERENCE GUIDE</h2>
+
+            <div class="quick-ref">
+                <h4>ACTION WORDS</h4>
+                <ul>
+                    <li>open</li>
+                    <li>create</li>
+                    <li>add</li>
+                    <li>select</li>
+                    <li>click</li>
+                    <li>type</li>
+                    <li>enter</li>
+                    <li>save</li>
+                    <li>change</li>
+                    <li>edit</li>
+                    <li>remove</li>
+                    <li>delete</li>
+                    <li>connect</li>
+                    <li>refresh</li>
+                    <li>check</li>
+                    <li>run</li>
+                    <li>load</li>
+                    <li>display</li>
+                    <li>style</li>
+                    <li>customize</li>
+                </ul>
+            </div>
+
+            <div class="quick-ref">
+                <h4>FILES & FOLDERS</h4>
+                <ul>
+                    <li>file</li>
+                    <li>folder</li>
+                    <li>page</li>
+                    <li>project</li>
+                    <li>browser</li>
+                    <li>editor</li>
+                    <li>code</li>
+                    <li>element</li>
+                    <li>tag</li>
+                    <li>attribute</li>
+                </ul>
+            </div>
+
+            <div class="quick-ref">
+                <h4>HTML TAGS</h4>
+                <ul>
+                    <li>head</li>
+                    <li>body</li>
+                    <li>title</li>
+                    <li>heading</li>
+                    <li>paragraph</li>
+                    <li>button</li>
+                    <li>link</li>
+                </ul>
+            </div>
+
+            <div class="quick-ref">
+                <h4>CSS PROPERTIES</h4>
+                <ul>
+                    <li>style</li>
+                    <li>background</li>
+                    <li>color</li>
+                    <li>font</li>
+                    <li>width</li>
+                    <li>height</li>
+                    <li>margin</li>
+                    <li>padding</li>
+                    <li>border</li>
+                    <li>display</li>
+                </ul>
+            </div>
+
+            <div class="quick-ref">
+                <h4>CONDITIONS & CONNECTORS</h4>
+                <ul>
+                    <li>before</li>
+                    <li>after</li>
+                    <li>if</li>
+                    <li>when</li>
+                    <li>required</li>
+                    <li>optional</li>
+                </ul>
+            </div>
+
+            <div class="mission-box">
+                <strong>Remember:</strong> Don't translate everything. Find what you need.
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Remove active class from all links and sections
+                navLinks.forEach(l => l.classList.remove('active'));
+                contentSections.forEach(s => s.classList.remove('active'));
+
+                // Add active class to clicked link and corresponding section
+                link.classList.add('active');
+                const sectionId = link.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+
+                // Scroll to top of main content
+                document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Smooth scroll for hash links
+        window.addEventListener('hashchange', () => {
+            const sectionId = window.location.hash.substring(1);
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
