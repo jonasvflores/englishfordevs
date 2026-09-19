@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Jonas Flowers</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 20px;
+            padding: 50px 40px;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .destaque {
+            margin: 25px 0;
+            font-size: 21px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .professor {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card">
+        <h1>Olá, tudo bem?</h1>
+
+        <p>
+            Agradeço pelo interesse!
+        </p>
+
+        <p class="destaque">
+            Volte quando a aula iniciar.
+        </p>
+
+        <p>
+            Até lá!
+        </p>
+
+        <p class="professor">
+            Prof. Jonas Flowers
+        </p>
+    </main>
+
+</body>
+</html>
